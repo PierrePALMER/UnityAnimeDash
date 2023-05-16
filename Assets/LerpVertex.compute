@@ -54,6 +54,29 @@ void InitOldVertexKernel(uint3 id : SV_DispatchThreadID)
     }
 }
 
+float3 Slerp(float3 start, float3 end, float t)
+{
+    // Compute the cosine of the angle between the two vectors.
+    float dotProduct = clamp(dot((start), (end)), -1.0, 1.0);
+
+    // If the dot product is close to 1, the angle is small, and we can use lerp to avoid division by zero.
+    if (dotProduct > 0.9995)
+    {
+        return (lerp(start, end, t));
+    }
+
+    // Compute the angle and its sin.
+    float theta = acos(dotProduct);
+    float sinTheta = sin(theta);
+
+    // Compute the scales for the start and end vectors.
+    float scaleStart = sin((1.0 - t) * theta) / sinTheta;
+    float scaleEnd = sin(t * theta) / sinTheta;
+
+    // Compute the interpolated vector.
+    return scaleStart * start + scaleEnd * end;
+}
+
 
 [numthreads(512,1,1)]
 void LerpVertexKernel(uint3 id : SV_DispatchThreadID)

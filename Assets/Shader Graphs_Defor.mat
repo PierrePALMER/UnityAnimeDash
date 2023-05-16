@@ -109,9 +109,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - _modulo: 16
-    - _noiseSpread: 0.1
+    - _noiseSpread: 0.545
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _velocity: {r: -6.743367e-19, g: 8.531464e-19, b: 0, a: 0}
+    - _velocity: {r: -0.00000040899926, g: -0.0000010017643, b: 0, a: 0}
   m_BuildTextureStacks: []

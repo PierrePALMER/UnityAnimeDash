@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.6907, g: 2264.1116, b: 3287.5356, a: 1}
+  m_IndirectSpecularColor: {r: 2160.4055, g: 2264.6077, b: 3288.0942, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -408,9 +408,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshFilter: {fileID: 1061919271}
-  lerp: 0.16
-  noiseSpread: 0.1
-  lengthRandomness: 0.5
+  lerp: 0.2
+  noiseSpread: 0.62
+  lengthRandomness: 0.57
   modulo: 16
   cs: {fileID: 7200000, guid: 8c4369805d6a7d64baaade0c247bab46, type: 3}
 --- !u!33 &1061919271 stripped
@@ -822,17 +822,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 38248051c0a6b2446ae16f358b0bb170,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.85
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38248051c0a6b2446ae16f358b0bb170,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.75
+      value: 4.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38248051c0a6b2446ae16f358b0bb170,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.8
+      value: -3.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 38248051c0a6b2446ae16f358b0bb170,
         type: 3}
