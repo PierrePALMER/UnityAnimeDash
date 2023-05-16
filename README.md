@@ -13,3 +13,7 @@ You then have 4 parameters :
 
 https://github.com/PierrePALMER/UnityAnimeDash/assets/72413533/69bb9227-8dd4-4e00-a5e2-36f18ec47587
 
+You can achieve different effect by tweaking the parameters.
+
+https://github.com/PierrePALMER/UnityAnimeDash/assets/72413533/c3bbaf6b-3070-4d67-94aa-651b6dc7f35a
+
