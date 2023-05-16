@@ -113,5 +113,5 @@ Material:
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _velocity: {r: -0.0000007431036, g: 0.00000035267144, b: 0, a: 0}
+    - _velocity: {r: -6.743367e-19, g: 8.531464e-19, b: 0, a: 0}
   m_BuildTextureStacks: []
