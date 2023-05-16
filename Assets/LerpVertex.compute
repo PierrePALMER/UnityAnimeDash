@@ -1,0 +1,90 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel LerpVertexKernel
+#pragma kernel InitOldVertexKernel
+#pragma kernel UpdatePositionKernel
+
+
+
+RWStructuredBuffer<float3> oldVertexBuffer;
+RWStructuredBuffer<float3> vertexBuffer; 
+
+RWStructuredBuffer<float3> oldTransformBuffer;
+
+float transformX;
+float transformY;
+float transformZ;
+
+float3 transformPosition;
+float4x4 localToWorldMatrix;
+float4x4 worldToLocalMatrix;
+
+float4x4 oldLocalToWorldMatrix;
+float4x4 oldWorldToLocalMatrix;
+
+RWStructuredBuffer<float> debugBuffer;
+
+float tLerp;
+float randomness;
+
+float RandomFloat1D(uint id)
+{
+
+    return frac(sin(dot(id, 12.9898)) * 43758.5453);
+}
+
+[numthreads(512, 1, 1)]
+void InitOldVertexKernel(uint3 id : SV_DispatchThreadID)
+{
+    /*
+    float3 worldPosition = mul(localToWorldMatrix, float4(vertexBuffer[id.x].pos, 1)).xyz;
+    oldVertexBuffer[id.x].pos = vertexBuffer[id.x].pos;
+    
+    oldLocalToWorldMatrix = localToWorldMatrix;
+    oldWorldToLocalMatrix = worldToLocalMatrix;
+    
+    debugBuffer[0] = localToWorldMatrix[3, 0];
+    */
+    //float3 worldPosition = vertexBuffer[id.x] + transformPosition;
+    oldVertexBuffer[id.x] = vertexBuffer[id.x];
+    oldTransformBuffer[id.x] = transformPosition;
+    if(id.x == 5) 
+    {
+        //debugBuffer[0] = worldPosition.x; 
+        
+    }
+}
+
+
+[numthreads(512,1,1)]
+void LerpVertexKernel(uint3 id : SV_DispatchThreadID)
+{
+    float lerpRandomness = lerp(0, RandomFloat1D(id.x) / (float) 2, randomness);
+    float3 lerpTransform = lerp(oldTransformBuffer[id.x], transformPosition, tLerp + lerpRandomness);
+    
+    vertexBuffer[id.x] = oldVertexBuffer[id.x] + (lerpTransform - transformPosition);
+    
+    oldTransformBuffer[id.x] = lerpTransform;
+    if(id.x == 5)
+    {
+        debugBuffer[0] = RandomFloat1D(id.x);
+        debugBuffer[1] = lerpTransform.y;
+        debugBuffer[2] = lerpTransform.z;
+        
+    }
+    /*
+    float3 worldPosition = mul(localToWorldMatrix, float4(vertexBuffer[id.x].pos, 1)).xyz;
+    float3 oldWorldPosition = mul(localToWorldMatrix, float4(oldVertexBuffer[id.x].pos, 1)).xyz;
+    
+    float3 position = lerp(worldPosition, oldWorldPosition, 25000);
+    
+    vertexBuffer[id.x].pos = mul(worldToLocalMatrix, float4(position, 1)).xyz;
+    oldVertexBuffer[id.x].pos = vertexBuffer[id.x].pos;
+    */
+}
+
+[numthreads(512, 1, 1)]
+void UpdatePositionKernel(uint3 id : SV_DispatchThreadID)
+{
+    //oldVertexBuffer[id.x].pos = vertexBuffer[id.x].pos;
+}
+
